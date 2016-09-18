@@ -6,6 +6,8 @@
       {{product.inBasket}}
   </li>
 </ul>
+
+<button type="button" (click)="resetList()" name="button">Liste löschen</button>
 <button (click)="toggleAddProducts(true)"> Produkte zur Liste </button>
 
 <app-products [parentList]="listKey"></app-products>

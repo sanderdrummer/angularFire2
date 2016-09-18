@@ -21,54 +21,43 @@ export class ProductsComponent implements OnInit {
       name: '',
       amount: ''
     };
+    this.products = this.af.database.list('/productList');
   }
 
   ngOnChanges(changes) {
     console.log(changes);
-    this.products = this.af.database.list('/productList');
     this.parentProducts = this.af.database.list('/lists/' + this.parentList + '/products');
-    this.parentProducts.subscribe((item) => {
-      this.resolvedProducts = item;
-      this.filteredProducts = this.resolvedProducts;
-      console.log(this.filteredProducts, this.resolvedProducts  )
-
-    });
   }
 
   ngOnInit() {
   }
 
-  searchFor(query) {
-    console.log(query, this.filteredProducts, this.resolvedProducts  )
-    if (query) {
-      this.filteredProducts = this.resolvedProducts.filter((product) => {
-        return product.name.indexOf(query) > -1;
-      })
-    } else {
-      this.filteredProducts = this.resolvedProducts
-    }
-  }
-
   addNewProduct(name) {
-    this.products.push({name});
-    this.query = '';
+    if (name) {
+      this.products.push({
+        name: name
+      });
+      this.query = '';
+    }
   }
 
   removeProduct(key) {
     this.products.remove(key);
   }
 
-  addProduct(product) {
+  addProduct(product, index) {
+
+
     var newProduct = {
       name: product.name || this.query,
       amount: product.amount || 1,
       inBasket:false,
     };
-    console.log(newProduct, this.query,  this.parentProducts,  )
 
-    if (!this.filteredProducts.length) {
-      this.addNewProduct(this.query);
-    }
+    console.log(newProduct);
+
+
+
     this.parentProducts.push(newProduct);
     this.query = '';
   }

@@ -48,4 +48,7 @@ export class ListComponent implements OnInit {
     this.showAddProducts = value;
   }
 
+  resetList() {
+    this.products.remove();
+  }
 }

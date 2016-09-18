@@ -8,7 +8,7 @@ export class ProductFilterPipe implements PipeTransform {
     if (products && products.length) {
       const filteredProducts = products.filter(product => {
         if (product && product.name) {
-          return product.name.indexOf(query) > -1
+          return product.name.toLowerCase().indexOf(query.toLowerCase()) > -1
         } else {
           return true;
         }
