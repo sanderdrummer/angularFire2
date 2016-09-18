@@ -1,12 +1,4 @@
-<p>
-  list works!
-</p>
-<form class="" (submit)="addProduct(product)">
-  <input type="text" [(ngModel)]="product.name" required name="name" value="">
-  <input type="text"  [(ngModel)]="product.amount" required name="amount" value="">
-  <button type="submit" name="button">neues Produkt</button>
-</form>
-
+{{listName}}
 <ul>
   <li (click)="addToBasket(product)" *ngFor="let product of products | async">
       {{product.name}}
@@ -14,3 +6,6 @@
       {{product.inBasket}}
   </li>
 </ul>
+<button (click)="toggleAddProducts(true)"> Produkte zur Liste </button>
+
+<app-products [parentList]="listKey"></app-products>

@@ -3,11 +3,10 @@
   <button type="submit" name="button">neue Liste</button>
 </form>
 
-<h1>{{ (lists | async | json) }}</h1>
 <ul>
    <li (click)="selectList(list)" *ngFor="let list of lists | async">
      {{ list.name }} <button type="button" (click)="(removeList(list))" name="button">löschen</button>
    </li>
  </ul>
 
-<app-list *ngIf="selectedList" [listKey]="selectedList.$key"></app-list>
+<app-list *ngIf="selectedList" [listName]="selectedList.name"  [listKey]="selectedList.$key"></app-list>

@@ -9,6 +9,7 @@ import { ListsComponent } from './lists/lists.component';
 import { ListComponent } from './lists/list/list.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './products/product/product.component';
+import { ProductFilterPipe } from './products/products.filter.pipe';
 
 // Must export the config
 export const firebaseConfig = {
@@ -24,7 +25,8 @@ export const firebaseConfig = {
     ListsComponent,
     ListComponent,
     ProductsComponent,
-    ProductComponent
+    ProductComponent,
+    ProductFilterPipe
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,15 @@
-<p>
+<p (click)="addProduct({})">
   products works!
 </p>
+
+<form (submit)="addProduct(product)">
+  <input type="text" (ngModelChange)="searchFor($event)"  [(ngModel)]="query" required name="queryInput" value="">
+  <button type="submit" name="button">anliegen</button>
+</form>
+
+
+<ul>
+  <li  *ngFor="let product of filteredProducts">
+      <span (click)="addProduct(product)" >{{product.name}}</span> <button (click)="removeProduct(product.$key)" type="button" name="button">Löschen</button>
+  </li>
+</ul>

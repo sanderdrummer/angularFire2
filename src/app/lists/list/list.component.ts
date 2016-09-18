@@ -9,38 +9,29 @@ import {AngularFire, FirebaseListObservable} from 'angularfire2';
 })
 export class ListComponent implements OnInit {
   @Input() listKey = null;
+  @Input() listName = '';
   products: FirebaseListObservable<any>;
   product:{}
+  showAddProducts: boolean;
 
   constructor(private af: AngularFire) {
     this.product = {
       name: '',
       amount: ''
     }
+
+    this.showAddProducts = false;
   }
 
   ngOnInit() {
   }
 
   ngOnChanges(changes) {
-    console.log(changes, this.listKey);
     if (this.listKey) {
       this.products = this.af.database.list('/lists/' + this.listKey + '/products', {query: {
         orderByChild: 'inBasket',
         }
       });
-    }
-
-    console.log(this.products);
-  }
-
-  addProduct(product) {
-
-    product.inBasket = false;
-    this.products.push(product);
-    this.product = {
-      name: '',
-      amount: ''
     }
   }
 
@@ -52,4 +43,9 @@ export class ListComponent implements OnInit {
       inBasket: product.inBasket
     });
   }
+
+  toggleAddProducts(value) {
+    this.showAddProducts = value;
+  }
+
 }
